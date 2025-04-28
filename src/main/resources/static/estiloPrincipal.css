@@ -1,0 +1,93 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #8BC34A;
+    --accent-color: #FFC107;
+    --text-dark: #2E7D32;
+    --hover-transition: all 0.3s ease;
+}
+
+body {
+    padding-top: 80px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    transition: var(--hover-transition);
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.carousel-item {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-card {
+    transition: var(--hover-transition);
+    border: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.category-badge {
+    background: var(--accent-color);
+    color: #000;
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    padding: 8px 40px;
+    transform: rotate(45deg);
+    font-weight: 600;
+    font-size: 0.9em;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.health-section {
+    background: linear-gradient(rgba(245,255,240,0.9), rgba(245,255,240,0.9)), url('/src/main/resources/static/img/green-roses-leaves-spread-white-background.jpg');
+    background-size: cover;
+    padding: 60px 0;
+}
+
+.footer {
+    background: linear-gradient(135deg, var(--text-dark), #1B5E20);
+    color: white;
+    padding: 50px 0;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.btn-custom {
+    background: var(--accent-color);
+    color: #000;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 30px;
+    transition: var(--hover-transition);
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
