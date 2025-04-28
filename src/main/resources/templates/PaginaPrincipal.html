@@ -87,24 +87,40 @@
 <section id="productos" class="container py-5 my-5">
     <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos más vendidos</h2>
     
+    <!-- Productos Destacados -->
+<section id="productos" class="container py-5 my-5">
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos más vendidos</h2>
+    
     <div class="row g-5">
         <!-- Producto 1 -->
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="product-card card h-100">
+            <div class="product-card card h-100 position-relative">
                 <span class="category-badge">Verano</span>
                 <img src="/src/main/resources/static/img/avene-solar-cleanance-anti-imperfecciones-spf-50-50-ml.jpg" class="card-img-top p-4" alt="Avene Solar SPF 50">
                 <div class="card-body text-center">
                     <h3 class="card-title h5 fw-bold">Avene Solar SPF 50</h3>
                     <p class="text-muted small">Protección solar anti-imperfecciones</p>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
                         <p class="h4 text-success fw-bold mb-0">6.99 €</p>
                         <button class="btn btn-primary rounded-pill px-4">
-                            <i class="bi bi-cart-plus"></i> Añadir
+                            <i class="bi bi-cart-plus">Añadir</i>
+                        </button>
+                    </div>
+
+                    <!-- Botones para Admin -->
+                    <div class="admin-controls d-flex justify-content-between">
+                        <button class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil-square">Editar</i> 
+                        </button>
+                        <button class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash">Eliminar</i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <!-- Producto 2 -->
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">
@@ -117,7 +133,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="h4 text-success fw-bold mb-0">4.95 €</p>
                         <button class="btn btn-primary rounded-pill px-4">
-                            <i class="bi bi-cart-plus"></i> Añadir
+                            <i class="bi bi-cart-plus">Añadir</i>
                         </button>
                     </div>
                 </div>
@@ -135,7 +151,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="h4 text-success fw-bold mb-0">9.85 €</p>
                         <button class="btn btn-primary rounded-pill px-4">
-                            <i class="bi bi-cart-plus"></i> Añadir
+                            <i class="bi bi-cart-plus">Añadir</i>
                         </button>
                     </div>
                 </div>
@@ -153,7 +169,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="h4 text-success fw-bold mb-0">6.15 €</p>
                         <button class="btn btn-primary rounded-pill px-4">
-                            <i class="bi bi-cart-plus"></i> Añadir
+                            <i class="bi bi-cart-plus">Añadir</i>
                         </button>
                     </div>
                 </div>
