@@ -1,0 +1,57 @@
+/* Estilos generales */
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #8BC34A;
+    --accent-color: #FFC107;
+    --text-dark: #2E7D32;
+    --hover-transition: all 0.3s ease;
+}
+
+body {
+    padding-top: 80px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+/* Estilos comunes para todas las páginas */
+.product-card {
+    transition: var(--hover-transition);
+    border: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.category-badge {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    padding: 8px 40px;
+    transform: rotate(45deg);
+    font-weight: 600;
+    font-size: 0.9em;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Específico para higiene bucal */
+.dental-badge {
+    background: #00b4d8;
+    color: #fff;
+}
+
+.dental-hero {
+    background: linear-gradient(rgba(0, 180, 216, 0.9), rgba(0, 180, 216, 0.9)),
+                url('../img/fondo-dental.jpg');
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    margin-top: 80px;
+}
