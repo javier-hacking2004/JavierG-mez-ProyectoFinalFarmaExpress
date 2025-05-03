@@ -1,28 +1,33 @@
 package com.salesianostriana.dam.JavierGomezProyectoFinal.Controller;
 
-import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductosService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequiredArgsConstructor
 public class PaginaController {
 
-    @Autowired
-    private ProductosService productoService;
+private final ProductoService productoService;
 
-    @GetMapping("/")
-    public String mostrarPaginaPrincipal(Model model) {
-        model.addAttribute("listaProductos", productoService.obtenerMasVendidos());
-        return "PaginaPrincipal";
-    }
-
-    @GetMapping("/categoria/{nombre}")
-    public String mostrarCategoria(@PathVariable("nombre") String nombre, Model model) {
-        model.addAttribute("categoria", nombre);
-        model.addAttribute("listaProductos", productoService.obtenerPorCategoria(nombre));
-        return "categoria"; // crea categoria.html como plantilla genérica
-    }
+@GetMapping("/")
+public String mostrarInicio(Model model) {
+    model.addAttribute("listaProductos", productoService.obtenerMasVendidos());
+    return "PaginaPrincipal";
 }
 
+@GetMapping("/categoria/{categoria}")
+public String productosPorCategoria(@PathVariable String categoria, Model model) {
+    model.addAttribute("listaProductos", productoService.obtenerPorCategoria(categoria));
+    model.addAttribute("categoriaNombre", categoria);
+    return "productosCategoria";
+}
+
+@GetMapping("/productos/eliminar/{id}")
+public String eliminarProducto(@PathVariable Long id) {
+    productoService.eliminarPorId(id);
+    return "redirect:/";
+    }
+}
