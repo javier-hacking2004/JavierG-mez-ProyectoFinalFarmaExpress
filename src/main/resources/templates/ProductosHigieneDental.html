@@ -56,30 +56,35 @@
     </div>
 </section>
 
-<!-- Productos -->
-<section class="container py-5 my-5">
-    <h2 class="text-center display-2 mb-5 fw-bold">Productos higiene-bucodental</h2>
-    
-    <div class="row g-5">
-        <!-- Producto 1 -->
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+<section id="productos" class="container py-5 my-5">
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos de HigieneDental</h2>
+
+    <div class="row g-5" th:if="${listaProductos}">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="producto : ${listaProductos}">
             <div class="product-card card h-100 position-relative">
-                <span class="category-badge dental-badge">Pasta Dental</span>
-                <img src="img/pasta-dental-sensibilidad.jpg" class="card-img-top p-4" alt="Pasta Dental">
+                <span class="category-badge" th:text="${producto.categoria}"></span>
+                <img class="card-img-top p-4" th:src="@{${producto.imagenUrl}}" th:alt="${producto.nombre}">
                 <div class="card-body text-center">
-                    <h3 class="card-title h5 fw-bold">Pasta Dental Sensibilidad</h3>
-                    <p class="text-muted small">Alivio inmediato para dientes sensibles</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="h4 text-success fw-bold mb-0">5.99 €</p>
+                    <h3 class="card-title h5 fw-bold" th:text="${producto.nombre}"></h3>
+                    <p class="text-muted small" th:text="${producto.descripcion}"></p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <p class="h4 text-success fw-bold mb-0" th:text="${producto.precio} + ' €'"></p>
                         <button class="btn btn-primary rounded-pill px-4">
-                            <i class="bi bi-cart-plus"></i> Añadir
+                            <i class="bi bi-cart-plus"> Añadir</i>
                         </button>
+                    </div>
+                    <!-- Botones para Admin -->
+                    <div class="admin-controls d-flex justify-content-between">
+                        <a class="btn btn-warning btn-sm" href="#">
+                            <i class="bi bi-pencil-square"> Editar</i>
+                        </a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/productos/eliminar/{id}(id=${producto.id})}">
+                            <i class="bi bi-trash"> Eliminar</i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Más productos... -->
     </div>
 </section>
 
