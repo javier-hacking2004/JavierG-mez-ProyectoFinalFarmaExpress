@@ -10,24 +10,37 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PaginaController {
 
-private final ProductoService productoService;
+    private final ProductoService productoService;
 
-@GetMapping("/")
-public String mostrarInicio(Model model) {
-    model.addAttribute("listaProductos", productoService.obtenerMasVendidos());
-    return "PaginaPrincipal";
-}
+    @GetMapping("/")
+    public String mostrarInicio(Model model) {
+        model.addAttribute("listaProductos", productoService.obtenerMasVendidos());
+        return "PaginaPrincipal";
+    }
 
-@GetMapping("/categoria/{categoria}")
-public String productosPorCategoria(@PathVariable String categoria, Model model) {
-    model.addAttribute("listaProductos", productoService.obtenerPorCategoria(categoria));
-    model.addAttribute("categoriaNombre", categoria);
-    return "productosCategoria";
-}
+    // Cada categoría tiene su propio HTML
+    @GetMapping("/categoria/{categoria}")
+    public String productosPorCategoria(@PathVariable String categoria, Model model) {
+        model.addAttribute("listaProductos", productoService.obtenerPorCategoria(categoria));
 
-@GetMapping("/productos/eliminar/{id}")
-public String eliminarProducto(@PathVariable Long id) {
-    productoService.eliminarPorId(id);
-    return "redirect:/";
+        // Elegimos plantilla según categoría exacta
+        switch (categoria.toLowerCase()) {
+            case "solares":
+                return "productosSolares";
+            case "faciales":
+                return "productosFaciales";
+            case "corporales":
+                return "productosCorporales";
+            case "higienedental":
+                return "productosHigieneDental";
+            default:
+                return "error/404"; // O redirige a una vista genérica si no existe
+        }
+    }
+
+    @GetMapping("/productos/eliminar/{id}")
+    public String eliminarProducto(@PathVariable Long id) {
+        productoService.eliminarPorId(id);
+        return "redirect:/";
     }
 }

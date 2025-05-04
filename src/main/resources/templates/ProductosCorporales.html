@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FarmaExpress - Tu Farmacia Online Integral</title>
+    <link rel="stylesheet" th:href="@{/estiloPaginas.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60" class="me-2">
+            FarmaExpress
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+                <li class="nav-item mx-2"><a class="nav-link" href="/">Inicio</a></li>
+                <li class="nav-item mx-2"><a class="nav-link active" href="/PaginaPrincipal">Principal</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" href="/productosFaciales">Faciales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" href="/productosCorporales">Corporales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" href="/productosHigieneDental">Higiene Dental</a></li>
+            </ul>
+            <form class="d-flex me-3">
+                <input class="form-control" type="search" placeholder="Buscar medicamentos...">
+                <button class="btn btn-outline-light ms-2" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+            <button class="btn btn-light position-relative">
+                <i class="bi bi-cart3"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Carrusel Principal -->
+<section id="inicio" class="pt-5 mt-5">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="/img/imagen-verano.webp" class="d-block w-100" alt="Verano">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-3 mb-4">Cuidamos Tu Bienestar</h1>
+                    <p class="lead fs-4">Productos farmacéuticos de última generación</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="/img/sol-verano.jpg" class="d-block w-100" alt="Orgánicos">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-3 mb-4">Productos Naturales</h1>
+                    <p class="lead fs-4">Descubre nuestra línea orgánica y ecológica</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="/img/playaverano.jpg" class="d-block w-100" alt="Entrega">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-3 mb-4">Entrega Inmediata</h1>
+                    <p class="lead fs-4">Recibe en tu casa en menos de 48 horas</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+</section>
+
+<!-- Productos más vendidos dinámicos -->
+<section id="productos" class="container py-5 my-5">
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos más vendidos</h2>
+
+    <div class="row g-5" th:if="${listaProductos}">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="producto : ${listaProductos}">
+            <div class="product-card card h-100 position-relative">
+                <span class="category-badge" th:text="${producto.categoria}"></span>
+                <img class="card-img-top p-4" th:src="@{${producto.imagenUrl}}" th:alt="${producto.nombre}">
+                <div class="card-body text-center">
+                    <h3 class="card-title h5 fw-bold" th:text="${producto.nombre}"></h3>
+                    <p class="text-muted small" th:text="${producto.descripcion}"></p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <p class="h4 text-success fw-bold mb-0" th:text="${producto.precio} + ' €'"></p>
+                        <button class="btn btn-primary rounded-pill px-4">
+                            <i class="bi bi-cart-plus"> Añadir</i>
+                        </button>
+                    </div>
+                    <!-- Botones para Admin -->
+                    <div class="admin-controls d-flex justify-content-between">
+                        <a class="btn btn-warning btn-sm" href="#">
+                            <i class="bi bi-pencil-square"> Editar</i>
+                        </a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/productos/eliminar/{id}(id=${producto.id})}">
+                            <i class="bi bi-trash"> Eliminar</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="health-section">
+    <div class="container py-5">
+        <h2 class="text-center display-4 mb-5 fw-bold" style="color: var(--text-dark);">Consejos para el cuidado corporal</h2>
+        <div class="row g-5">
+            <div class="col-md-4" th:each="consejo : ${#lists.list(
+                'Hidratación Constante|Bebe agua regularmente para prevenir la deshidratación durante los días calurosos|/img/hidratacion.jpg',
+                'Protección Solar|Usa protector solar SPF 30+ y reaplícalo cada 2 horas|/img/playa-crema-solar.jpg',
+                'Alimentos Frescos|Incluye frutas y verduras frescas en tu dieta|/img/alimentos-frescos.jpg'
+            )}">
+                <div class="card h-100 border-0 shadow-lg">
+                    <img th:src="@{${#strings.split(consejo, '|')[2]}}" class="card-img-top" alt="Consejo">
+                    <div class="card-body">
+                        <h3 class="card-title h5 fw-bold" th:text="${#strings.split(consejo, '|')[0]}"></h3>
+                        <p class="card-text" th:text="${#strings.split(consejo, '|')[1]}"></p>
+                        <a href="#" class="btn btn-outline-success">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white pt-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-4">
+                <h4 class="mb-4">Contacto</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-geo-alt-fill me-2"></i>Av. Salud 123, Valencia</li>
+                    <li><i class="bi bi-telephone-fill me-2"></i>+34 963 123 456</li>
+                    <li><i class="bi bi-envelope-fill me-2"></i>info@farma-salud.com</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="mb-4">Horario</h4>
+                <ul class="list-unstyled">
+                    <li>Lunes-Viernes: 8:30-21:00</li>
+                    <li>Sábados: 9:00-14:00</li>
+                    <li>Urgencias 24h</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="mb-4">Redes Sociales</h4>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                </div>
+                <h4 class="mt-4">Suscríbete</h4>
+                <div class="input-group mt-2">
+                    <input type="email" class="form-control" placeholder="Tu email">
+                    <button class="btn btn-success">Suscribir</button>
+                </div>
+            </div>
+        </div>
+        <hr class="my-5">
+        <p class="text-center mb-0">© 2025 FarmaExpress. Todos los derechos reservados</p>
+    </div>
+</footer>
+
+</body>
+
+<script>
+	document.querySelector('#btnOscuro').addEventListener('click',cambiarModo);
+	let sigTema = 'dark'
+	function cambiarModo() {		
+		document.documentElement.setAttribute('data-bs-theme',sigTema);
+		sigTema = sigTema=='dark'?'light':'dark';
+	}
+</script>
+
+</html>
