@@ -26,13 +26,13 @@ public class PaginaController {
         // Elegimos plantilla según categoría exacta
         switch (categoria.toLowerCase()) {
             case "solares":
-                return "productosSolares";
+                return "ProductosSolar";
             case "faciales":
-                return "productosFaciales";
+                return "ProductosFaciales";
             case "corporales":
-                return "productosCorporales";
+                return "ProductosCorporales";
             case "higienedental":
-                return "productosHigieneDental";
+                return "ProductosHigieneDental";
             default:
                 return "error/404"; // O redirige a una vista genérica si no existe
         }

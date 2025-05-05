@@ -17,8 +17,8 @@ public List<Producto> obtenerMasVendidos() {
     return productoRepository.findByMasVendidoTrue();
 }
 
-public List<Producto> obtenerPorCategoria(String categoria) {
-    return productoRepository.findByCategoriaIgnoreCase(categoria);
+public List<Producto> obtenerPorCategoria(String nombreCategoria) {
+    return productoRepository.findByCategoriaNombreIgnoreCase(nombreCategoria);
 }
 
 public List<Producto> obtenerTodos() {

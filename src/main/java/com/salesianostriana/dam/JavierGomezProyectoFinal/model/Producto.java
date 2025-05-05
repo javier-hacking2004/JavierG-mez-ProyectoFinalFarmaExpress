@@ -8,6 +8,7 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class Producto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,12 +20,11 @@ public class Producto {
     private String imagenUrl;
 
     private double precio;
-    private String categoria;
 
     @Column(name = "MAS_VENDIDO")
     private boolean masVendido;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 }
-
-
-
-
