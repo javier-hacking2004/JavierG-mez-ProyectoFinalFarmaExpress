@@ -24,10 +24,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
                 <li class="nav-item mx-2"><a class="nav-link" href="/">Inicio</a></li>
-                <li class="nav-item mx-2"><a class="nav-link active" href="/PaginaPrincipal">Principal</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" href="/productosFaciales">Faciales</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" href="/productosCorporales">Corporales</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" href="/productosHigieneDental">Higiene Dental</a></li>
+                <li class="nav-item mx-2"><a class="nav-link active" href="/src/main/resources/templates/PaginaPrincipal.html">Inicio</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" href="/src/main/resources/templates/ProductosFaciales.html">Faciales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" href="/src/main/resources/templates/ProductosCorporales.html">Corporales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" href="/src/main/resources/templates/ProductosHigieneDental.html">Higiene Dental</a></li>
             </ul>
             <form class="d-flex me-3">
                 <input class="form-control" type="search" placeholder="Buscar medicamentos...">
@@ -80,7 +80,7 @@
 
 <!-- Productos más vendidos dinámicos -->
 <section id="productos" class="container py-5 my-5">
-    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos más vendidos</h2>
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos para el cuidado del sol</h2>
 
     <div class="row g-5" th:if="${listaProductos}">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="producto : ${listaProductos}">

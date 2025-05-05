@@ -2,7 +2,6 @@ package com.salesianostriana.dam.JavierGomezProyectoFinal.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Entity
