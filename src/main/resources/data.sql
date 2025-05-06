@@ -1,11 +1,11 @@
--- Insertar categorías (asumiendo que la tabla tiene "id" autoincremental)
+-- Insertar categorías la tabla tiene "id" automaticamente
 INSERT INTO CATEGORIA (nombre) VALUES
 ('Solares'),
 ('HigieneDental'),
 ('Corporales'),
 ('CuidadosFaciales');
 
--- Insertar productos (CATEGORIA_ID debe ser 1, 2, 3 o 4)
+-- Inserta productos (CATEGORIA_ID debe ser 1, 2, 3 o 4)
 INSERT INTO PRODUCTO (NOMBRE, DESCRIPCION, IMAGEN_URL, PRECIO, CATEGORIA_ID, MAS_VENDIDO) VALUES
 ('autobronceado', 'autobronceado', 'https://tienda.pilar-delgado.com/4704-large_default/institut-esthederm-reflets-de-soleil-autobronceador-gel-crema.jpg', 17.99, 1, FALSE),
 ('avene-solar-cleanance-anti-imperfecciones-spf-50-50-ml', 'avene-solar-cleanance-anti-imperfecciones-spf-50-50-ml', 'https://www.druni.es/media/catalog/product/5/0/5013169.jpg', 14.95, 1, TRUE),

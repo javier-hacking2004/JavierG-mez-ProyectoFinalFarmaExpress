@@ -24,13 +24,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
                 <li class="nav-item mx-2"><a class="nav-link" href="/">Inicio</a></li>
-                <li class="nav-item mx-2"><a class="nav-link active" href="/src/main/resources/templates/PaginaPrincipal.html">Inicio</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" href="/src/main/resources/templates/ProductosFaciales.html">Faciales</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" href="/src/main/resources/templates/ProductosCorporales.html">Corporales</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" href="/src/main/resources/templates/ProductosHigieneDental.html">Higiene Dental</a></li>
-            </ul>
+                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/HigieneDental'}">Higiene Dental</a></li>
+            </ul> 
             <form class="d-flex me-3">
-                <input class="form-control" type="search" placeholder="Buscar medicamentos...">
+                <input class="form-control" type="search" placeholder="Buscador...">
                 <button class="btn btn-outline-light ms-2" type="submit">
                     <i class="bi bi-search"></i>
                 </button>

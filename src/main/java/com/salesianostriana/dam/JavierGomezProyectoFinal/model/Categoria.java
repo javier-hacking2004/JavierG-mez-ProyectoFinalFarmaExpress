@@ -20,6 +20,10 @@ public class Categoria {
 
     private String descripcion;
 
+    // mappedBy = "categoria" indica que la propiedad "categoria" en Producto es la dueña de la relación.
+    // cascade = CascadeType.ALL permite que si borramos una Categoria, también se borren sus productos asociados.
+    // orphanRemoval = true elimina automáticamente los productos que se queden sin categoría.
+
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Producto> productos;
 }

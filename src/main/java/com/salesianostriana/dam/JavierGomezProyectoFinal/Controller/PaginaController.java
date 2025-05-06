@@ -24,18 +24,18 @@ public class PaginaController {
         model.addAttribute("listaProductos", productoService.obtenerPorCategoria(categoria));
 
         // Elegimos plantilla según categoría exacta
-        switch (categoria.toLowerCase()) {
-            case "solares":
-                return "ProductosSolar";
-            case "faciales":
-                return "ProductosFaciales";
-            case "corporales":
-                return "ProductosCorporales";
-            case "higienedental":
-                return "ProductosHigieneDental";
-            default:
-                return "error/404"; // O redirige a una vista genérica si no existe
-        }
+    switch (categoria) {
+        case "Solares":
+            return "ProductosSolar";
+        case "CuidadosFaciales":
+            return "ProductosFaciales";
+        case "Corporales":
+            return "ProductosCorporales";
+        case "HigieneDental":
+            return "ProductosHigieneDental";
+        default:
+            return "error/404";
+    }
     }
 
     @GetMapping("/productos/eliminar/{id}")
