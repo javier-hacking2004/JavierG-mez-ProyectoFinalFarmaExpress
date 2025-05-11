@@ -35,7 +35,7 @@ public class PaginaController {
             return "ProductosHigieneDental";
         default:
             return "error/404";
-    }
+        }
     }
 
     @GetMapping("/productos/eliminar/{id}")
