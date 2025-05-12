@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface Productorepository extends JpaRepository<Producto, Long> {
     
-    List<Producto> findByCategoriaNombreIgnoreCase(String nombre);
-
     List<Producto> findByMasVendidoTrue();
+
+    List<Producto> findByNombreContainingIgnoreCase(String nombre);
+
+    List<Producto> findByCategoriaNombreIgnoreCase(String nombreCategoria);
 }

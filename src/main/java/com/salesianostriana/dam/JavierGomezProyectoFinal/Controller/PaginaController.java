@@ -21,10 +21,9 @@ public class PaginaController {
     // Cada categoría tiene su propio HTML
     @GetMapping("/categoria/{categoria}")
     public String productosPorCategoria(@PathVariable String categoria, Model model) {
-        model.addAttribute("listaProductos", productoService.obtenerPorCategoria(categoria));
+        model.addAttribute("listaProductos", productoService.buscarPorCategoria(categoria));
 
-        // Elegimos plantilla según categoría exacta
-    switch (categoria) {
+        switch (categoria) {
         case "Solares":
             return "ProductosSolar";
         case "CuidadosFaciales":
@@ -35,12 +34,12 @@ public class PaginaController {
             return "ProductosHigieneDental";
         default:
             return "error/404";
-        }
     }
+}
 
     @GetMapping("/productos/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id) {
-        productoService.eliminarPorId(id);
+        productoService.deleteById(id);
         return "redirect:/";
     }
 }
