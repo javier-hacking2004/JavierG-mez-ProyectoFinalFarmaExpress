@@ -61,7 +61,7 @@
                     </div>
                     <!-- Botones para Admin -->
                     <div class="admin-controls d-flex justify-content-between">
-                        <a class="btn btn-warning btn-sm" href="#">
+                        <a th:href="@{'/productos/editar/' + ${producto.id}}" class="btn btn-warning btn-sm">Editar</a>
                             <i class="bi bi-pencil-square"> Editar</i>
                         </a>
                         <a class="btn btn-danger btn-sm" th:href="@{/productos/eliminar/{id}(id=${producto.id})}">
