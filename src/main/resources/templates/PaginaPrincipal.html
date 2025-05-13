@@ -38,7 +38,6 @@
                 <i class="bi bi-cart3"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
             </button>
-            <button id="btnOscuro" type="button" class="btn btn-dark">Cambiar a modo oscuro</button>
         </div>
     </div>
 </nav>
@@ -205,15 +204,6 @@
         <p class="text-center mb-0">© 2025 FarmaExpress. Todos los derechos reservados</p>
     </div>
 </footer>
-
-<script>
-	document.querySelector('#btnOscuro').addEventListener('click',cambiarModo);
-	let sigTema = 'dark'
-	function cambiarModo() {		
-		document.documentElement.setAttribute('data-bs-theme',sigTema);
-		sigTema = sigTema=='dark'?'light':'dark';
-	}
-</script>
-
+<script th:src="@{/js/ordenarProductos.js}"></script>
 </body>
 </html>

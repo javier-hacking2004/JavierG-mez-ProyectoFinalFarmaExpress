@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-public class PaginaController {
+public class MainController {
 
     private final ProductoService productoService;
 
@@ -34,12 +34,7 @@ public class PaginaController {
             return "ProductosHigieneDental";
         default:
             return "error/404";
-    }
-}
+      }
+  }
 
-    @GetMapping("/productos/eliminar/{id}")
-    public String eliminarProducto(@PathVariable Long id) {
-        productoService.deleteById(id);
-        return "redirect:/";
-    }
 }

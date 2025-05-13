@@ -14,13 +14,22 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60" class="me-2">
-            FarmaExpress
-        </a>
+        <a class="navbar-brand d-flex align-items-center text-white gap-3" href="#">
+    <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60">
+    <span class="fw-bold">FarmaExpress</span>
+
+    <div class="ms-5 d-flex align-items-start flex-column small">
+        <div class="text-black">
+            <i class="bi bi-truck me-1"></i> Envío gratis por
+        </div>
+        <div class="ms-4 text-black">compra superior a 30 €</div>
+    </div>
+</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
                 <li class="nav-item mx-2"><a class="nav-link" href="/">Inicio</a></li>
@@ -45,9 +54,16 @@
 <section id="productos" class="container py-5 my-5">
     <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos para el cuidado del sol</h2>
 
-    <div class="row g-5" th:if="${listaProductos}">
+<div class="text-center mb-4">
+    <p class="mb-2"><strong>Ordenar por:</strong></p>
+    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('nombre')">Nombre A–Z</button>
+    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('precioAsc')">Precio ↑</button>
+    <button class="btn btn-outline-primary" onclick="ordenarProductos('precioDesc')">Precio ↓</button>
+</div>
+
+    <div id="contenedor-productos" class="row g-5" th:if="${listaProductos}">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="producto : ${listaProductos}">
-            <div class="product-card card h-100 position-relative">
+            <div class="product-card card h-100 position-relative" th:attr="data-nombre=${producto.nombre}, data-precio=${producto.precio}">
                 <span class="category-badge" th:text="${producto.categoria.nombre}"></span>
                 <img class="card-img-top p-4" th:src="@{${producto.imagenUrl}}" th:alt="${producto.nombre}">
                 <div class="card-body text-center">
@@ -175,6 +191,6 @@
         <p class="text-center mb-0">© 2025 FarmaExpress. Todos los derechos reservados</p>
     </div>
 </footer>
-
+<script th:src="@{/js/ordenarProductos.js}"></script>
 </body>
 </html>

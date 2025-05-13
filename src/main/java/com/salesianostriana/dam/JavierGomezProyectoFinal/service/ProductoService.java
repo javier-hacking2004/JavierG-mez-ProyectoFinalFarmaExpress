@@ -2,13 +2,16 @@ package com.salesianostriana.dam.JavierGomezProyectoFinal.service;
 
 import com.salesianostriana.dam.JavierGomezProyectoFinal.model.Producto;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.repository.Productorepository;
+import com.salesianostriana.dam.JavierGomezProyectoFinal.service.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductoService {
+
+public class ProductoService extends BaseServiceImpl<Producto, Long, Productorepository> {
 
     private final Productorepository productoRepository;
 
@@ -22,9 +25,5 @@ public class ProductoService {
 
     public List<Producto> buscarPorCategoria(String nombreCategoria) {
         return productoRepository.findByCategoriaNombreIgnoreCase(nombreCategoria);
-    }
-
-    public void deleteById(Long id) {
-        productoRepository.deleteById(id);
     }
 }
