@@ -30,12 +30,24 @@ public class ProductoController {
     }
 
     @GetMapping("/editar/{id}")
-    public String editarProducto(@PathVariable Long id, Model model) {
-        Producto producto = productoService.findById(id).orElseThrow();
-        model.addAttribute("producto", producto);
-        model.addAttribute("categorias", categoriaService.findAll());
-        return "formulario-producto";
+    public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
+    Producto producto = productoService.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+    model.addAttribute("producto", producto);
+    model.addAttribute("categorias", categoriaService.findAll()); 
+    return "FormularioEditarProducto";
+}
+
+    @PostMapping("/editar")
+    public String guardarCambios(@ModelAttribute Producto producto) {
+    // Recuperar la categoría correctamente si solo se mapea el id
+    if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
+        producto.setCategoria(categoriaService.findById(producto.getCategoria().getId()).orElse(null));
     }
+
+    productoService.save(producto);
+    return "redirect:/";
+}
 
     @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id) {

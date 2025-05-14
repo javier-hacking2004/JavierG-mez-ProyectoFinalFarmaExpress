@@ -19,6 +19,9 @@ public class Producto {
     @Column(name = "IMAGEN_URL")
     private String imagenUrl;
 
+    @Column(name = "TEXTO_ALTERNATIVO")
+    private String textoAlternativo;
+
     private double precio;
 
     @Column(name = "MAS_VENDIDO")

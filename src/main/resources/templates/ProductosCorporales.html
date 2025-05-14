@@ -14,10 +14,17 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60" class="me-2">
-            FarmaExpress
-        </a>
+        <a class="navbar-brand d-flex align-items-center text-white gap-3" href="#">
+    <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60">
+    <span class="fw-bold">FarmaExpress</span>
+
+    <div class="ms-5 d-flex align-items-start flex-column small">
+        <div class="text-black">
+            <i class="bi bi-truck me-1"></i> Envío gratis por
+        </div>
+        <div class="ms-4 text-black">compra superior a 30 €</div>
+    </div>
+</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,7 +54,7 @@
 
 <div class="text-center mb-4">
     <p class="mb-2"><strong>Ordenar por:</strong></p>
-    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('nombre')">Nombre A–Z</button>
+    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('nombre')">Nombre A-Z</button>
     <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('precioAsc')">Precio ↑</button>
     <button class="btn btn-outline-primary" onclick="ordenarProductos('precioDesc')">Precio ↓</button>
 </div>
@@ -56,7 +63,7 @@
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="producto : ${listaProductos}">
             <div class="product-card card h-100 position-relative" th:attr="data-nombre=${producto.nombre}, data-precio=${producto.precio}">
                 <span class="category-badge" th:text="${producto.categoria.nombre}"></span>
-                <img class="card-img-top p-4" th:src="@{${producto.imagenUrl}}" th:alt="${producto.nombre}">
+                <img class="card-img-top p-4" th:src="${producto.imagenUrl}" th:alt="${producto.textoAlternativo}" />
                 <div class="card-body text-center">
                     <h3 class="card-title h5 fw-bold" th:text="${producto.nombre}"></h3>
                     <p class="text-muted small" th:text="${producto.descripcion}"></p>
@@ -66,11 +73,10 @@
                             <i class="bi bi-cart-plus"> Añadir</i>
                         </button>
                     </div>
-                    <!-- Botones para Admin -->
+
                     <div class="admin-controls d-flex justify-content-between">
-                        <a th:href="@{'/productos/editar/' + ${producto.id}}" class="btn btn-warning btn-sm">Editar</a>
-                            <i class="bi bi-pencil-square"> Editar</i>
-                        </a>
+                    <a class="btn btn-warning btn-sm" th:href="@{/productos/editar/{id}(id=${producto.id})}">
+                        <i class="bi bi-pencil-square"></i> Editar </a>
                         <a class="btn btn-danger btn-sm" th:href="@{/productos/eliminar/{id}(id=${producto.id})}">
                             <i class="bi bi-trash"> Eliminar</i>
                         </a>

@@ -56,7 +56,7 @@
 
 <div class="text-center mb-4">
     <p class="mb-2"><strong>Ordenar por:</strong></p>
-    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('nombre')">Nombre A–Z</button>
+    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('nombre')">Nombre A-Z</button>
     <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('precioAsc')">Precio ↑</button>
     <button class="btn btn-outline-primary" onclick="ordenarProductos('precioDesc')">Precio ↓</button>
 </div>
@@ -65,7 +65,7 @@
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="producto : ${listaProductos}">
             <div class="product-card card h-100 position-relative" th:attr="data-nombre=${producto.nombre}, data-precio=${producto.precio}">
                 <span class="category-badge" th:text="${producto.categoria.nombre}"></span>
-                <img class="card-img-top p-4" th:src="@{${producto.imagenUrl}}" th:alt="${producto.nombre}">
+                <img class="card-img-top p-4" th:src="${producto.imagenUrl}" th:alt="${producto.textoAlternativo}" />
                 <div class="card-body text-center">
                     <h3 class="card-title h5 fw-bold" th:text="${producto.nombre}"></h3>
                     <p class="text-muted small" th:text="${producto.descripcion}"></p>
@@ -75,11 +75,10 @@
                             <i class="bi bi-cart-plus"> Añadir</i>
                         </button>
                     </div>
-                    <!-- Botones para Admin -->
+
                     <div class="admin-controls d-flex justify-content-between">
-                        <a th:href="@{'/productos/editar/' + ${producto.id}}" class="btn btn-warning btn-sm">Editar</a>
-                            <i class="bi bi-pencil-square"> Editar</i>
-                        </a>
+                    <a class="btn btn-warning btn-sm" th:href="@{/productos/editar/{id}(id=${producto.id})}">
+                        <i class="bi bi-pencil-square"></i> Editar </a>
                         <a class="btn btn-danger btn-sm" th:href="@{/productos/eliminar/{id}(id=${producto.id})}">
                             <i class="bi bi-trash"> Eliminar</i>
                         </a>
@@ -90,7 +89,6 @@
     </div>
 </section>
 
-<!-- Consejos para el Verano -->
 <section class="health-section py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-5 fw-bold">Consejos de Verano</h2>
