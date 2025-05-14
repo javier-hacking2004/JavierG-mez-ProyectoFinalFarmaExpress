@@ -35,16 +35,25 @@
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/HigieneDental'}">Higiene Dental</a></li>
             </ul> 
-            <form class="d-flex me-3">
-                <input class="form-control" type="search" placeholder="Buscador...">
+            <form class="d-flex me-3" th:action="@{/buscar}" method="get">
+                <input class="form-control" type="search" name="nombre" placeholder="Buscador...">
                 <button class="btn btn-outline-light ms-2" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <button class="btn btn-light position-relative">
-                <i class="bi bi-cart3"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-            </button>
+
+            <div class="dropdown">
+                <button class="btn btn-light position-relative me-4 dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="bi bi-cart3"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                </button>
+            <div class="dropdown-menu p-3" style="min-width: 300px;"></div>
+        </div>
+
+            <a th:href="@{/productos/nuevo}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Nuevo producto
+        </a>
+        
         </div>
     </div>
 </nav>
@@ -150,5 +159,6 @@
     </div>
 </footer>
 <script th:src="@{/js/ordenarProductos.js}"></script>
+<script th:src="@{/js/carrito.js}"></script>
 </body>
 </html>

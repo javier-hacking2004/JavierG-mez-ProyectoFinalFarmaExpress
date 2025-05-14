@@ -14,10 +14,18 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60" class="me-2">
-            FarmaExpress
-        </a>
+        <a class="navbar-brand d-flex align-items-center text-white gap-3" href="#">
+    <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60">
+    <span class="fw-bold">FarmaExpress</span>
+
+    <div class="ms-5 d-flex align-items-start flex-column small">
+        <div class="text-black">
+            <i class="bi bi-truck me-1"></i> Envío gratis por
+        </div>
+        <div class="ms-4 text-black">compra superior a 30 €</div>
+    </div>
+</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,22 +35,31 @@
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/HigieneDental'}">Higiene Dental</a></li>
-            </ul>            
-            <form class="d-flex me-3">
-                <input class="form-control" type="search" placeholder="Buscador...">
+            </ul>
+
+            <form class="d-flex me-3" th:action="@{/buscar}" method="get">
+                <input class="form-control" type="search" name="nombre" placeholder="Buscador...">
                 <button class="btn btn-outline-light ms-2" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <button class="btn btn-light position-relative">
-                <i class="bi bi-cart3"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-            </button>
+
+            <div class="dropdown">
+                <button class="btn btn-light position-relative me-4 dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="bi bi-cart3"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                </button>
+            <div class="dropdown-menu p-3" style="min-width: 300px;"></div>
+        </div>
+
+        <a th:href="@{/productos/nuevo}" class="btn btn-success text-nowrap">
+            <i class="bi bi-plus me-2"></i> Nuevo producto
+        </a>
+
         </div>
     </div>
 </nav>
 
-<!-- Carrusel de imagenes -->
 <section id="inicio" class="pt-5 mt-5">
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -71,7 +88,6 @@
     </div>
 </section>
 
-<!-- Productos más vendidos dinámicos -->
 <section id="productos" class="container py-5 my-5">
     <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos más vendidos</h2>
 
@@ -85,11 +101,14 @@
                     <p class="text-muted small" th:text="${producto.descripcion}"></p>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <p class="h4 text-success fw-bold mb-0" th:text="${producto.precio} + ' €'"></p>
-                        <button class="btn btn-primary rounded-pill px-4">
+                        <button class="btn btn-primary rounded-pill px-4 add-to-cart"
+                                data-id="[[${producto.id}]]"
+                                data-nombre="[[${producto.nombre}]]"
+                                data-precio="[[${producto.precio}]]">
                             <i class="bi bi-cart-plus"> Añadir</i>
                         </button>
                     </div>
-                    <!-- Botones para Admin -->
+
                         <a class="btn btn-danger btn-sm" th:href="@{/productos/eliminar/{id}(id=${producto.id})}">
                             <i class="bi bi-trash"> Eliminar</i>
                         </a>
@@ -170,7 +189,7 @@
                 <ul class="list-unstyled">
                     <li><i class="bi bi-geo-alt-fill me-2"></i>Av. Salud 123, Valencia</li>
                     <li><i class="bi bi-telephone-fill me-2"></i>+34 963 123 456</li>
-                    <li><i class="bi bi-envelope-fill me-2"></i>info@farma-salud.com</li>
+                    <li><i class="bi bi-envelope-fill me-2"></i>info@FarmaExpress.com</li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -201,5 +220,6 @@
     </div>
 </footer>
 <script th:src="@{/js/ordenarProductos.js}"></script>
+<script th:src="@{/js/carrito.js}"></script>
 </body>
 </html>

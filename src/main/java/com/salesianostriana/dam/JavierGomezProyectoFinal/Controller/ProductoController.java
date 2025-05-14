@@ -20,7 +20,7 @@ public class ProductoController {
     public String mostrarFormularioNuevoProducto(Model model) {
         model.addAttribute("producto", new Producto());
         model.addAttribute("categorias", categoriaService.findAll());
-        return "formulario-producto";
+        return "FormularioNuevoProducto";
     }
 
     @PostMapping("/guardar")

@@ -1,7 +1,11 @@
 package com.salesianostriana.dam.JavierGomezProyectoFinal.Controller;
 
+import com.salesianostriana.dam.JavierGomezProyectoFinal.model.Producto;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductoService;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +39,14 @@ public class MainController {
         default:
             return "error/404";
       }
+  }
+
+  @GetMapping("/buscar")
+    public String buscarProductoPorNombre(@RequestParam("nombre") String nombre, Model model) {
+    List<Producto> resultados = productoService.buscarPorNombre(nombre);
+    model.addAttribute("listaProductos", resultados);
+    model.addAttribute("busqueda", nombre); 
+    return "resultadosBusqueda";
   }
 
 }
