@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CategoriaService extends BaseServiceImpl<Categoria, Long, CategoriaRepository> {
-    // Puedes añadir métodos personalizados aquí si los necesitas más adelante
+
 }

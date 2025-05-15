@@ -11,7 +11,6 @@
 </head>
 <body>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center text-white gap-3" href="#">
@@ -25,15 +24,17 @@
         <div class="ms-4 text-black">compra superior a 30 €</div>
     </div>
 </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
                 <li class="nav-item mx-2"><a class="nav-link" href="/">Inicio</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/HigieneDental'}">Higiene Dental</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
             </ul> 
             <form class="d-flex me-3" th:action="@{/buscar}" method="get">
                 <input class="form-control" type="search" name="nombre" placeholder="Buscador...">
@@ -50,16 +51,16 @@
             <div class="dropdown-menu p-3" style="min-width: 300px;"></div>
         </div>
 
-        <a th:href="@{/productos/nuevo}" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Nuevo producto
-        </a>
-        
+            <a th:href="@{/productos/nuevo}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Nuevo producto
+            </a>
+            
         </div>
     </div>
 </nav>
 
 <section id="productos" class="container py-5 my-5">
-    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos de cuidados Corporales</h2>
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos cuidado corporal</h2>
 
 <div class="text-center mb-4">
     <p class="mb-2"><strong>Ordenar por:</strong></p>
@@ -96,20 +97,59 @@
     </div>
 </section>
 
-<section class="health-section">
-    <div class="container py-5">
-        <h2 class="text-center display-4 mb-5 fw-bold" style="color: var(--text-dark);">Consejos para el cuidado corporal</h2>
-        <div class="row g-5">
-            <div class="col-md-4" th:each="consejo : ${#lists.list(
-                'Hidratación Constante|Bebe agua regularmente para prevenir la deshidratación durante los días calurosos|/img/hidratacion.jpg',
-                'Protección Solar|Usa protector solar SPF 30+ y reaplícalo cada 2 horas|/img/playa-crema-solar.jpg',
-                'Alimentos Frescos|Incluye frutas y verduras frescas en tu dieta|/img/alimentos-frescos.jpg'
-            )}">
-                <div class="card h-100 border-0 shadow-lg">
-                    <img th:src="@{${#strings.split(consejo, '|')[2]}}" class="card-img-top" alt="Consejo">
+<section class="health-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Consejos de Verano</h2>
+        <div class="row g-4 justify-content-center">
+
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img th:src="@{https://www.cadenadial.com/wp-content/uploads/2023/05/16-9-proteccion-solar-1422x800.jpg}" alt="Protección Solar">
                     <div class="card-body">
-                        <h3 class="card-title h5 fw-bold" th:text="${#strings.split(consejo, '|')[0]}"></h3>
-                        <p class="card-text" th:text="${#strings.split(consejo, '|')[1]}"></p>
+                        <h5 class="card-title">Protección Solar</h5>
+                        <p class="card-text">Usa protector solar SPF 50+ diariamente y evita el sol en las horas más intensas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img th:src="@{https://www.akronoticias.com/wp-content/uploads/2024/07/Mantente-hidratado-en-esta-temporada-de-calor.jpg}" alt="Hidratación">
+                    <div class="card-body">
+                        <h5 class="card-title">Mantente Hidratado</h5>
+                        <p class="card-text">Bebe al menos 2 litros de agua al día para combatir el calor y prevenir golpes de calor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img th:src="@{https://vasalsuperoalacomer.com/comer/images/notas/2021/mayo/me-lo-dijo-la-comer-blog-Ropa-para-la-epoca-de-calor-outfit.jpg}" alt="Ropa Ligera">
+                    <div class="card-body">
+                        <h5 class="card-title">Ropa Adecuada</h5>
+                        <p class="card-text">Viste con prendas ligeras, de colores claros y tejidos naturales como el algodón.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-lg">
+                    <img th:src="@{https://www.lavozdeltajo.com/fotos/49/golpe-de-calor-uanl-2019-3.jpg}" class="card-img-top" alt="Prevención de golpe de calor">
+                    <div class="card-body">
+                        <h3 class="card-title h5 fw-bold">Evita Golpes de Calor</h3>
+                        <p class="card-text">Evita la exposición directa al sol en horas pico y busca lugares frescos.</p>
+                        <a href="#" class="btn btn-outline-success">Leer más</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-lg">
+                    <img th:src="@{https://media.a24.com/p/99f978c6985e39fdeac95ab23ffd0c1d/adjuntos/296/imagenes/008/111/0008111961/1200x675/smart/la-importancia-realizar-actividades-al-aire-libre.jpeg}" class="card-img-top" alt="Actividades al aire libre">
+                    <div class="card-body">
+                        <h3 class="card-title h5 fw-bold">Actividades al Aire Libre</h3>
+                        <p class="card-text">Practica deportes o caminatas temprano en la mañana o al atardecer.</p>
                         <a href="#" class="btn btn-outline-success">Leer más</a>
                     </div>
                 </div>

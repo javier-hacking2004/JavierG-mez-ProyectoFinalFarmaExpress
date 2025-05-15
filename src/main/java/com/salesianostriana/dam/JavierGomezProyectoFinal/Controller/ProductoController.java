@@ -40,7 +40,6 @@ public class ProductoController {
 
     @PostMapping("/editar")
     public String guardarCambios(@ModelAttribute Producto producto) {
-    // Recuperar la categoría correctamente si solo se mapea el id
     if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
         producto.setCategoria(categoriaService.findById(producto.getCategoria().getId()).orElse(null));
     }

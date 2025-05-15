@@ -11,7 +11,6 @@
 </head>
 <body>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center text-white gap-3" href="#">
@@ -25,16 +24,18 @@
         <div class="ms-4 text-black">compra superior a 30 €</div>
     </div>
 </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
                 <li class="nav-item mx-2"><a class="nav-link" href="/">Inicio</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
-            </ul>            
+                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
+            </ul> 
             <form class="d-flex me-3" th:action="@{/buscar}" method="get">
                 <input class="form-control" type="search" name="nombre" placeholder="Buscador...">
                 <button class="btn btn-outline-light ms-2" type="submit">
@@ -50,20 +51,20 @@
             <div class="dropdown-menu p-3" style="min-width: 300px;"></div>
         </div>
 
-        <a th:href="@{/productos/nuevo}" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Nuevo producto
-        </a>
-        
+            <a th:href="@{/productos/nuevo}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Nuevo producto
+            </a>
+            
         </div>
     </div>
 </nav>
 
 <section id="productos" class="container py-5 my-5">
-    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos higiene dental</h2>
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos para higiene dental</h2>
 
 <div class="text-center mb-4">
     <p class="mb-2"><strong>Ordenar por:</strong></p>
-    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('nombre')">Nombre A–Z</button>
+    <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('nombre')">Nombre A-Z</button>
     <button class="btn btn-outline-primary me-2" onclick="ordenarProductos('precioAsc')">Precio ↑</button>
     <button class="btn btn-outline-primary" onclick="ordenarProductos('precioDesc')">Precio ↓</button>
 </div>
@@ -82,7 +83,7 @@
                             <i class="bi bi-cart-plus"> Añadir</i>
                         </button>
                     </div>
-                    <!-- Botones para Admin -->
+
                     <div class="admin-controls d-flex justify-content-between">
                     <a class="btn btn-warning btn-sm" th:href="@{/productos/editar/{id}(id=${producto.id})}">
                         <i class="bi bi-pencil-square"></i> Editar </a>
@@ -96,22 +97,20 @@
     </div>
 </section>
 
-<!-- Consejos de Verano -->
-<section class="health-section">
-    <div class="container py-5">
-        <h2 class="text-center display-4 mb-5 fw-bold" style="color: var(--text-dark);">Consejos para la higiene dental</h2>
-        <div class="row g-5">
-            <div class="col-md-4" th:each="consejo : ${#lists.list(
-                'Hidratación Constante|Bebe agua regularmente para prevenir la deshidratación durante los días calurosos|/img/hidratacion.jpg',
-                'Protección Solar|Usa protector solar SPF 30+ y reaplícalo cada 2 horas|/img/playa-crema-solar.jpg',
-                'Alimentos Frescos|Incluye frutas y verduras frescas en tu dieta|/img/alimentos-frescos.jpg'
-            )}">
-                <div class="card h-100 border-0 shadow-lg">
-                    <img th:src="@{${#strings.split(consejo, '|')[2]}}" class="card-img-top" alt="Consejo">
+<section class="health-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Consejos para el verano</h2>
+        <div th:if="${#lists.isEmpty(consejos)}" class="text-center">
+            <p class="fs-5 text-muted">No hay consejos disponibles para esta categoría en este momento.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center" th:if="${not #lists.isEmpty(consejos)}">
+            <div class="col-md-6 col-lg-4" th:each="consejo : ${consejos}">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img class="card-img-top" th:src="${consejo.imagen}" th:alt="${consejo.titulo}">
                     <div class="card-body">
-                        <h3 class="card-title h5 fw-bold" th:text="${#strings.split(consejo, '|')[0]}"></h3>
-                        <p class="card-text" th:text="${#strings.split(consejo, '|')[1]}"></p>
-                        <a href="#" class="btn btn-outline-success">Leer más</a>
+                        <h5 class="card-title" th:text="${consejo.titulo}">Título</h5>
+                        <p class="card-text" th:text="${consejo.descripcion}">Descripción</p>
                     </div>
                 </div>
             </div>

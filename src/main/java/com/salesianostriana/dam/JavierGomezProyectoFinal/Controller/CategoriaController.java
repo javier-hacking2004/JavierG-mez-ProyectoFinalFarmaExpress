@@ -1,8 +1,16 @@
 package com.salesianostriana.dam.JavierGomezProyectoFinal.Controller;
 
 import com.salesianostriana.dam.JavierGomezProyectoFinal.model.Categoria;
+import com.salesianostriana.dam.JavierGomezProyectoFinal.model.ConsejoSalud;
+import com.salesianostriana.dam.JavierGomezProyectoFinal.model.Producto;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.repository.CategoriaRepository;
+import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ConsejoSaludService;
+import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductoService;
+
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 public class CategoriaController {
 
     private final CategoriaRepository categoriaRepo;
+    private final ProductoService productoService;
+    private final ConsejoSaludService consejoSaludService;
 
     @GetMapping("/nueva")
     public String mostrarFormularioNuevaCategoria(Model model) {
@@ -25,5 +35,17 @@ public class CategoriaController {
         categoriaRepo.save(categoria);
         return "redirect:/";
     }
-}
 
+    @GetMapping("/{nombre}")
+    public String mostrarCategoria(@PathVariable String nombre, Model model) {
+        List<Producto> productos = productoService.buscarPorCategoria(nombre); 
+        List<ConsejoSalud> consejos = consejoSaludService.findByCategoria(nombre); 
+
+        model.addAttribute("listaProductos", productos);
+        model.addAttribute("consejos", consejos);
+        model.addAttribute("categoriaNombre", nombre);
+
+        return nombre.toLowerCase(); // debe coincidir con el HTML
+    }
+        
+}
