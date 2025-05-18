@@ -79,9 +79,10 @@
                     <p class="text-muted small" th:text="${producto.descripcion}"></p>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <p class="h4 text-success fw-bold mb-0" th:text="${producto.precio} + ' €'"></p>
-                        <button class="btn btn-primary rounded-pill px-4">
-                            <i class="bi bi-cart-plus"> Añadir</i>
-                        </button>
+                        <a th:href="@{'/carrito/add/' + ${producto.id}}" class="btn btn-primary rounded-pill px-4">
+                            <i class="bi bi-cart-plus"></i> Añadir
+                        </a>
+
                     </div>
 
                     <div class="admin-controls d-flex justify-content-between">
@@ -139,7 +140,6 @@
                     <div class="card-body">
                         <h3 class="card-title h5 fw-bold">Evita Golpes de Calor</h3>
                         <p class="card-text">Evita la exposición directa al sol en horas pico y busca lugares frescos.</p>
-                        <a href="#" class="btn btn-outline-success">Leer más</a>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,6 @@
                     <div class="card-body">
                         <h3 class="card-title h5 fw-bold">Actividades al Aire Libre</h3>
                         <p class="card-text">Practica deportes o caminatas temprano en la mañana o al atardecer.</p>
-                        <a href="#" class="btn btn-outline-success">Leer más</a>
                     </div>
                 </div>
             </div>
@@ -158,7 +157,6 @@
     </div>
 </section>
 
-<!-- Footer -->
 <footer class="footer bg-dark text-white pt-5">
     <div class="container">
         <div class="row g-5">
@@ -198,6 +196,5 @@
     </div>
 </footer>
 <script th:src="@{/js/ordenarProductos.js}"></script>
-<script th:src="@{/js/carrito.js}"></script>
 </body>
 </html>
