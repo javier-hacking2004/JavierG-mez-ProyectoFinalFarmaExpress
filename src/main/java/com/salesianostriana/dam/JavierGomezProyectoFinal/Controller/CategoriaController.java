@@ -24,7 +24,7 @@ public class CategoriaController {
     @GetMapping("/nueva")
     public String mostrarFormularioNuevaCategoria(Model model) {
         model.addAttribute("categoria", new Categoria());
-        return "formulario-categoria";
+        return "FormularioNuevaCategoria.html";
     }
 
     @PostMapping("/guardar")
@@ -42,5 +42,17 @@ public class CategoriaController {
 
         return nombre.toLowerCase(); // debe coincidir con el HTML
     }
-        
+
+@GetMapping("/eliminar/{id}")
+    public String eliminarCategoria(@PathVariable Long id) {
+    categoriaRepo.deleteById(id);
+    return "redirect:/categorias/listado";
+}
+
+@GetMapping("/listado")
+public String listarCategorias(Model model) {
+    List<Categoria> categorias = categoriaRepo.findAll();
+    model.addAttribute("categorias", categorias);
+    return "listado-categorias";
+  }
 }

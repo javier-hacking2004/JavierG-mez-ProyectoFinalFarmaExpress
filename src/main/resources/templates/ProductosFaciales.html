@@ -35,7 +35,12 @@
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/HigieneDental'}">Higiene Dental</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
-            </ul> 
+            
+            <li class="nav-item mx-2">
+                <a class="nav-link" th:href="@{/quienes-somos}">Quiénes Somos</a>
+            </li>
+        </ul>
+
             <form class="d-flex me-3" th:action="@{/buscar}" method="get">
                 <input class="form-control" type="search" name="nombre" placeholder="Buscador...">
                 <button class="btn btn-outline-light ms-2" type="submit">
@@ -51,16 +56,30 @@
             <div class="dropdown-menu p-3" style="min-width: 300px;"></div>
         </div>
 
-            <a th:href="@{/productos/nuevo}" class="btn btn-success">
+<div class="dropdown me-3">
+    <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <i class="bi bi-gear"></i> Administrar
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+            <a class="dropdown-item" th:href="@{/productos/nuevo}">
                 <i class="bi bi-plus-circle"></i> Nuevo producto
             </a>
+        </li>
+        <li>
+            <a class="dropdown-item" th:href="@{/categorias/nueva}">
+                <i class="bi bi-folder-plus"></i> Nueva categoría
+            </a>
+        </li>
+    </ul>
+</div>
             
         </div>
     </div>
 </nav>
 
 <section id="productos" class="container py-5 my-5">
-    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos para el cuidado facial</h2>
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos los cuidados faciales</h2>
 
 <div class="text-center mb-4">
     <p class="mb-2"><strong>Ordenar por:</strong></p>
