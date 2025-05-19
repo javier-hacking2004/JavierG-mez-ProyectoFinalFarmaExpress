@@ -49,4 +49,9 @@ public class MainController {
     return "resultadosBusqueda";
   }
 
+  @GetMapping("/quienes-somos")
+    public String mostrarQuienesSomos() {
+        return "quienes-somos";
+    }
 }
+

@@ -1,4 +1,4 @@
-// Este servicio maneja un carrito de compra temporal.
+// Este servicio maneja un carrito de compra temporal con tiempo limitado.
 // No usamos Repository porque no estamos guardando el carrito en la base de datos.
 
 package com.salesianostriana.dam.JavierGomezProyectoFinal.service;

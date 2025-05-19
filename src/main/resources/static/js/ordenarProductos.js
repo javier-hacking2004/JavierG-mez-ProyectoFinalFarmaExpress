@@ -17,7 +17,7 @@ function ordenarProductos(tipo) {
         }
     });
 
-    // Volver a meter los productos ordenados
+    // Volver a meter los productos ordenados desde el principio (como estaba antes)
     const columnas = contenedor.querySelectorAll('.col-12');
     columnas.forEach(col => col.remove());
 

@@ -34,8 +34,8 @@
 
         <div class="col-md-6">
             <label class="form-label">Categoría</label>
-            <select th:field="*{categoria}" class="form-select" required>
-                <option th:each="cat : ${categorias}" th:value="${cat}" th:text="${cat.nombre}"></option>
+            <select th:field="*{categoria.id}" class="form-select" required>
+                <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.nombre}"></option>
             </select>
         </div>
 

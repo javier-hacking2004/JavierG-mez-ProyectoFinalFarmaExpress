@@ -25,9 +25,13 @@ public class ProductoController {
 
     @PostMapping("/guardar")
     public String guardarProducto(@ModelAttribute Producto producto) {
+        if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
+            producto.setCategoria(categoriaService.findById(producto.getCategoria().getId()).orElse(null));
+        }
         productoService.save(producto);
         return "redirect:/";
     }
+
 
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
