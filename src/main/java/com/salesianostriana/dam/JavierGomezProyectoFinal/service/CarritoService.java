@@ -25,7 +25,7 @@ public class CarritoService {
                 return;
             }
         }
-
+        
         carrito.add(new CarritoItem(producto, 1));
         actualizarFecha();
     }
@@ -36,13 +36,11 @@ public class CarritoService {
     }
 
     public List<CarritoItem> obtenerCarrito() {
-        return new ArrayList<>(carrito); // devuelve una copia para no modificar directamente
+        return new ArrayList<>(carrito);
     }
 
     public double calcularTotal() {
-        return carrito.stream()
-                .mapToDouble(CarritoItem::getSubtotal)
-                .sum();
+        return carrito.stream().mapToDouble(CarritoItem::getSubtotal).sum();
     }
 
     public double calcularEnvio() {

@@ -30,4 +30,22 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    // MÉTODOS HELPER --- el objeto principal en mi caso es producto
+
+    public boolean esCaro() {
+        return this.precio > 50.0;
+    }
+
+    public String getEtiquetaProducto() {
+        return String.format("%s - %.2f €", this.nombre, this.precio);
+    }
+
+    public double getPrecioConIVA(double porcentaje) {
+        return Math.round(this.precio * (1 + porcentaje / 100.0) * 100.0) / 100.0;
+    }
+
+    public boolean esMasVendido() {
+        return this.masVendido;
+    }
 }

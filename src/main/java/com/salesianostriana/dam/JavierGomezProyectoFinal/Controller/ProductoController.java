@@ -3,18 +3,24 @@ package com.salesianostriana.dam.JavierGomezProyectoFinal.Controller;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.model.Producto;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.service.CategoriaService;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductoService;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/productos")
-@RequiredArgsConstructor
 public class ProductoController {
 
     private final ProductoService productoService;
     private final CategoriaService categoriaService;
+
+    @Autowired
+    public ProductoController(ProductoService productoService, CategoriaService categoriaService) {
+        this.productoService = productoService;
+        this.categoriaService = categoriaService;
+    }
 
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevoProducto(Model model) {
@@ -32,25 +38,24 @@ public class ProductoController {
         return "redirect:/";
     }
 
-
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
-    Producto producto = productoService.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
-    model.addAttribute("producto", producto);
-    model.addAttribute("categorias", categoriaService.findAll()); 
-    return "FormularioEditarProducto";
-}
+        Producto producto = productoService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+        model.addAttribute("producto", producto);
+        model.addAttribute("categorias", categoriaService.findAll());
+        return "FormularioEditarProducto";
+    }
 
     @PostMapping("/editar")
     public String guardarCambios(@ModelAttribute Producto producto) {
-    if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
-        producto.setCategoria(categoriaService.findById(producto.getCategoria().getId()).orElse(null));
-    }
+        if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
+            producto.setCategoria(categoriaService.findById(producto.getCategoria().getId()).orElse(null));
+        }
 
-    productoService.save(producto);
-    return "redirect:/";
-}
+        productoService.save(producto);
+        return "redirect:/";
+    }
 
     @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id) {

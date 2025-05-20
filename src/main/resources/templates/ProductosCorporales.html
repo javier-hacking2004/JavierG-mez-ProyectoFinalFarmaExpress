@@ -50,10 +50,11 @@
         </form>
 
             <div class="dropdown">
-                <button class="btn btn-light position-relative me-4 dropdown-toggle" data-bs-toggle="dropdown">
+                <a class="btn btn-light position-relative me-4" th:href="@{/carrito/ver}">
                     <i class="bi bi-cart3"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                </button>
+                    <span th:text="${carritoCantidadTotal}"></span>
+                </a>
+
             <div class="dropdown-menu p-3" style="min-width: 300px;"></div>
         </div>
 
@@ -95,14 +96,19 @@
                 <span class="category-badge" th:text="${producto.categoria.nombre}"></span>
                 <img class="card-img-top p-4" th:src="${producto.imagenUrl}" th:alt="${producto.textoAlternativo}" />
                 <div class="card-body text-center">
-                    <h3 class="card-title h5 fw-bold" th:text="${producto.nombre}"></h3>
+                    <h3 class="card-title h5 fw-bold" th:text="${producto.etiquetaProducto}"></h3>
                     <p class="text-muted small" th:text="${producto.descripcion}"></p>
+                    <div th:if="${producto.esCaro()}" class="badge bg-danger mb-2">Precio elevado</div>
+                    <div th:if="${producto.masVendido}" class="badge bg-success mb-2">Más vendido</div>
+                    <p class="text-secondary small">Precio con IVA: 
+                        <span th:text="${producto.getPrecioConIVA(21)} + ' €'"></span>
+                    </p>
+
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <p class="h4 text-success fw-bold mb-0" th:text="${producto.precio} + ' €'"></p>
-                        <a th:href="@{'/carrito/add/' + ${producto.id}}" class="btn btn-primary rounded-pill px-4">
+                        <a th:href="@{'/carrito/add/' + ${producto.id} + '?redirectTo=/categoria/Corporales'}" class="btn btn-primary rounded-pill px-4">
                             <i class="bi bi-cart-plus"></i> Añadir
                         </a>
-
                     </div>
 
                     <div class="admin-controls d-flex justify-content-between">
