@@ -35,6 +35,7 @@
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
+                <li class="nav-item mx-2"><a class="nav-link"th:href=@{/estadisticas}>Estadísticas</a></li>
             
             <li class="nav-item mx-2">
                 <a class="nav-link" th:href="@{/quienes-somos}">Quiénes Somos</a>
@@ -43,11 +44,11 @@
 
 
             <form class="d-flex me-3" th:action="@{/buscar}" method="get">
-                <input class="form-control" type="search" name="nombre" placeholder="Buscador...">
-                <button class="btn btn-outline-light ms-2" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </form>
+                <input class="form-control" type="search" name="nombre" placeholder="Buscador..." style="width: 200px;">
+            <button class="btn btn-outline-light ms-2" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
 
             <div class="dropdown">
                 <button class="btn btn-light position-relative me-4 dropdown-toggle" data-bs-toggle="dropdown">
@@ -80,7 +81,7 @@
 </nav>
 
 <section id="productos" class="container py-5 my-5">
-    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos cuidado corporal</h2>
+    <h2 class="text-center display-2 mb-5 fw-bold" style="color: var(--text-dark);">Productos del cuidado Dental</h2>
 
 <div class="text-center mb-4">
     <p class="mb-2"><strong>Ordenar por:</strong></p>

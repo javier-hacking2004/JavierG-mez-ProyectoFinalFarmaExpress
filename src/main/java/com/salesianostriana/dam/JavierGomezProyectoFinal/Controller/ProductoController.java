@@ -57,4 +57,11 @@ public class ProductoController {
         productoService.deleteById(id);
         return "redirect:/";
     }
+
+    @GetMapping("/contar")
+    @ResponseBody
+    public String contarProductosPorCategoria(@RequestParam String categoria) {
+        long total = productoService.contarPorCategoria(categoria);
+        return "Total de productos en la categoría '" + categoria + "': " + total;
+    }
 }

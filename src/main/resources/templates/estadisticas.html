@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estadísticas de Categorías</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Estadísticas de Categorías</h2>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre de la Categoría</th>
+                <th>Total de Productos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="fila : ${estadisticas}">
+                <td th:text="${fila[0]}">Nombre</td>
+                <td th:text="${fila[1]}">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+        <a th:href="@{/}" class="btn btn-primary">Volver al inicio</a>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

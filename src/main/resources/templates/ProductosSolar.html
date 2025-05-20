@@ -35,18 +35,19 @@
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/HigieneDental'}">Higiene Dental</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
                 <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
+                <li class="nav-item mx-2"><a class="nav-link"th:href=@{/estadisticas}>Estadísticas</a></li>
             
             <li class="nav-item mx-2">
                 <a class="nav-link" th:href="@{/quienes-somos}">Quiénes Somos</a>
             </li>
         </ul>
 
-            <form class="d-flex me-3" th:action="@{/buscar}" method="get">
-                <input class="form-control" type="search" name="nombre" placeholder="Buscador...">
-                <button class="btn btn-outline-light ms-2" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </form>
+        <form class="d-flex me-3" th:action="@{/buscar}" method="get">
+            <input class="form-control" type="search" name="nombre" placeholder="Buscador..." style="width: 200px;">
+        <button class="btn btn-outline-light ms-2" type="submit">
+            <i class="bi bi-search"></i>
+        </button>
+    </form>
 
             <div class="dropdown">
                 <button class="btn btn-light position-relative me-4 dropdown-toggle" data-bs-toggle="dropdown">

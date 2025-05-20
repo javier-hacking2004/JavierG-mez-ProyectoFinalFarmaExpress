@@ -21,4 +21,9 @@ public class ProductoService extends BaseServiceImpl<Producto, Long, Productorep
     public List<Producto> buscarPorCategoria(String nombreCategoria) {
         return repository.findByCategoriaNombreIgnoreCase(nombreCategoria);
     }
+
+    public long contarPorCategoria(String nombreCategoria) {
+        return repository.contarPorCategoria(nombreCategoria);
+    }
+
 }

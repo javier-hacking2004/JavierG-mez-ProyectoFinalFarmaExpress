@@ -40,7 +40,7 @@ public class CategoriaController {
         model.addAttribute("listaProductos", productos);
         model.addAttribute("categoriaNombre", nombre);
 
-        return nombre.toLowerCase(); // debe coincidir con el HTML
+        return nombre.toLowerCase(); 
     }
 
 @GetMapping("/eliminar/{id}")
