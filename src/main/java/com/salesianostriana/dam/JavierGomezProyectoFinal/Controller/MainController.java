@@ -8,7 +8,6 @@ import com.salesianostriana.dam.JavierGomezProyectoFinal.service.CarritoService;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,6 @@ public class MainController {
     private final CategoriaService categoriaService;
     private final CarritoService carritoService;
 
-    @Autowired
     public MainController(ProductoService productoService, CategoriaService categoriaService, CarritoService carritoService) {
         this.productoService = productoService;
         this.categoriaService = categoriaService;

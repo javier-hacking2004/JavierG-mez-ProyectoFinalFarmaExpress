@@ -4,7 +4,6 @@ import com.salesianostriana.dam.JavierGomezProyectoFinal.model.Producto;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.service.CarritoService;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductoService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,6 @@ public class CarritoController {
     private final CarritoService carritoService;
     private final ProductoService productoService;
 
-    @Autowired
     public CarritoController(CarritoService carritoService, ProductoService productoService) {
         this.carritoService = carritoService;
         this.productoService = productoService;
@@ -35,7 +33,7 @@ public class CarritoController {
     @GetMapping("/ver")
     public String verCarrito(Model model) {
         model.addAttribute("carrito", carritoService.obtenerCarrito());
-        model.addAttribute("total", carritoService.calcularTotal());
+        model.addAttribute("total", carritoService.calcularTotalConIVA());
         model.addAttribute("envio", carritoService.calcularEnvio());
         model.addAttribute("totalConEnvio", carritoService.calcularTotalConEnvio());
         model.addAttribute("ultimaActualizacion", carritoService.getUltimaActualizacion());

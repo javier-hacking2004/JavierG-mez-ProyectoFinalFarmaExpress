@@ -13,69 +13,78 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center text-white gap-3" href="#">
-    <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="60">
-    <span class="fw-bold">FarmaExpress</span>
 
-    <div class="ms-5 d-flex align-items-start flex-column small">
-        <div class="text-black">
-            <i class="bi bi-truck me-1"></i> Envío gratis por
+        <a class="navbar-brand d-flex align-items-center gap-2 me-3" href="#">
+            <img th:src="@{/img/FarmaExpress-logo.png}" alt="Logo" width="40">
+            <span class="fw-bold d-none d-sm-block">FarmaExpress</span>
+        </a>
+
+        <div class="d-none d-lg-flex flex-column small me-auto">
+            <div class="text-black">
+                <i class="bi bi-truck me-1 text-black"></i> 
+                Envío gratis por
+            </div>
+            <div class="ms-4 text-black">compra superior a 30 €</div>
         </div>
-        <div class="ms-4 text-black">compra superior a 30 €</div>
-    </div>
-</a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto me-4">
-                <li class="nav-item mx-2"><a class="nav-link" href="/">Inicio</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
-                <li class="nav-item mx-2"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
-                <li class="nav-item mx-2"><a class="nav-link"th:href=@{/estadisticas}>Estadísticas</a></li>
-            
-            <li class="nav-item mx-2">
-                <a class="nav-link" th:href="@{/quienes-somos}">Quiénes Somos</a>
-            </li>
-        </ul>
 
-            <form class="d-flex me-3" th:action="@{/buscar}" method="get">
-                <input class="form-control" type="search" name="nombre" placeholder="Buscador..." style="width: 200px;">
-            <button class="btn btn-outline-light ms-2" type="submit">
-                <i class="bi bi-search"></i>
-            </button>
-        </form>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{'/categoria/Corporales'}">Corporales</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{'/categoria/HigieneDental'}">Higiene Dental</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{'/categoria/CuidadosFaciales'}">Faciales</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{'/categoria/Solares'}">Solar</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/estadisticas}">Estadísticas</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/quienes-somos}">Quiénes Somos</a></li>
+            </ul>
 
-            <div class="dropdown">
-                <a class="btn btn-light position-relative me-4" th:href="@{/carrito/ver}">
+            <form class="d-flex my-2 my-lg-0 mx-2 flex-grow-1 flex-lg-grow-0" 
+                  th:action="@{/buscar}" 
+                  method="get">
+                <div class="input-group">
+                    <input class="form-control form-control-sm" 
+                           type="search" 
+                           name="nombre" 
+                           placeholder="Buscar...">
+                    <button class="btn btn-outline-light btn-sm" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div class="d-flex align-items-center gap-2">
+                <a class="btn btn-outline-light btn-sm position-relative"
+                   th:href="@{/carrito/ver}">
                     <i class="bi bi-cart3"></i>
-                    <span th:text="${carritoCantidadTotal}"></span>
+                    <span th:text="${carritoCantidadTotal}" 
+                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    </span>
                 </a>
 
-            <div class="dropdown-menu p-3" style="min-width: 300px;"></div>
-        </div>
-
-<div class="dropdown me-3">
-    <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        <i class="bi bi-gear"></i> Administrar
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end">
-        <li>
-            <a class="dropdown-item" th:href="@{/productos/nuevo}">
-                <i class="bi bi-plus-circle"></i> Nuevo producto
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item" th:href="@{/categorias/nueva}">
-                <i class="bi bi-folder-plus"></i> Nueva categoría
-            </a>
-        </li>
-    </ul>
-</div>
-            
+                <div class="dropdown">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle py-1" 
+                            type="button" 
+                            data-bs-toggle="dropdown">
+                        <i class="bi bi-gear"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" th:href="@{/productos/nuevo}">
+                                <i class="bi bi-plus-circle me-1"></i> Nuevo producto
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/categorias/nueva}">
+                                <i class="bi bi-folder-plus me-1"></i> Nueva categoría
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
@@ -96,17 +105,17 @@
                 <span class="category-badge" th:text="${producto.categoria.nombre}"></span>
                 <img class="card-img-top p-4" th:src="${producto.imagenUrl}" th:alt="${producto.textoAlternativo}" />
                 <div class="card-body text-center">
-                    <h3 class="card-title h5 fw-bold" th:text="${producto.etiquetaProducto}"></h3>
+                    <h3 class="card-title h5 fw-bold" th:text="${producto.nombre}"></h3>
                     <p class="text-muted small" th:text="${producto.descripcion}"></p>
                     <div th:if="${producto.esCaro()}" class="badge bg-danger mb-2">Precio elevado</div>
                     <div th:if="${producto.masVendido}" class="badge bg-success mb-2">Más vendido</div>
-                    <p class="text-secondary small">Precio con IVA: 
-                        <span th:text="${producto.getPrecioConIVA(21)} + ' €'"></span>
+                    <p class="text-secondary small">Precio sin IVA: 
+                        <span th:text="${#numbers.formatDecimal(producto.precio, 1, 2)} + ' €'"></span>
                     </p>
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <p class="h4 text-success fw-bold mb-0" th:text="${producto.precio} + ' €'"></p>
-                        <a th:href="@{'/carrito/add/' + ${producto.id} + '?redirectTo=/categoria/Corporales'}" class="btn btn-primary rounded-pill px-4">
+                        <p class="h4 text-success fw-bold mb-0" th:text="${#numbers.formatDecimal(producto.getPrecioConIVA(21), 1, 2)} + ' €'"></p>
+                        <a th:href="@{'/carrito/add/' + ${producto.id} + '?redirectTo=/categoria/HigieneDental'}" class="btn btn-primary rounded-pill px-4">
                             <i class="bi bi-cart-plus"></i> Añadir
                         </a>
                     </div>

@@ -32,6 +32,11 @@
             <input type="text" th:field="*{imagenUrl}" class="form-control" required>
         </div>
 
+        <div class="col-12">
+            <label class="form-label">Texto Alternativo</label>
+            <input type="text" th:field="*{textoAlternativo}" class="form-control" required>
+        </div>
+
         <div class="col-md-6">
             <label class="form-label">Categoría</label>
             <select th:field="*{categoria.id}" class="form-select" required>

@@ -12,7 +12,7 @@ public class CarritoItem {
     private Producto producto;
     private int cantidad;
 
-    public double getSubtotal() {
-        return producto.getPrecio() * cantidad;
+    public double getSubtotalConIVA() {
+        return Math.round(producto.getPrecioConIVA(21) * cantidad * 100.0) / 100.0;
     }
 }

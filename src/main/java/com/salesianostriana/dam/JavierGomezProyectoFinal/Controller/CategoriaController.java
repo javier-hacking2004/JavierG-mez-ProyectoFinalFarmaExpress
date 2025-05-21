@@ -7,7 +7,6 @@ import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductoService
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,6 @@ public class CategoriaController {
     private final CategoriaRepository categoriaRepo;
     private final ProductoService productoService;
 
-    @Autowired
     public CategoriaController(CategoriaRepository categoriaRepo, ProductoService productoService) {
         this.categoriaRepo = categoriaRepo;
         this.productoService = productoService;
@@ -47,14 +45,19 @@ public class CategoriaController {
 
     @GetMapping("/eliminar/{id}")
     public String eliminarCategoria(@PathVariable Long id) {
-        categoriaRepo.deleteById(id);
-        return "redirect:/categorias/listado";
+        Categoria categoria = categoriaRepo.findById(id).orElse(null);
+        if (categoria != null && (categoria.getProductos() == null || categoria.getProductos().isEmpty())) {
+            categoriaRepo.deleteById(id);
+        }
+        
+        return "redirect:/categorias/estadisticas";
     }
 
-    @GetMapping("/listado")
-    public String listarCategorias(Model model) {
-        List<Categoria> categorias = categoriaRepo.findAll();
-        model.addAttribute("categorias", categorias);
-        return "listado-categorias";
+    @GetMapping("/estadisticas")
+    public String mostrarEstadisticas(Model model) {
+        List<Object[]> estadisticas = categoriaRepo.findCategoriasConConteoDeProductos();
+        model.addAttribute("estadisticas", estadisticas);
+        return "estadisticas";
     }
+
 }

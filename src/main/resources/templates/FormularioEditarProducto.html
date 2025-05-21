@@ -33,6 +33,11 @@
     </div>
 
     <div class="mb-3">
+        <label>Texto Alternativo (Imagen)</label>
+        <input type="text" th:field="*{textoAlternativo}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
         <label>Categoría</label>
         <select th:field="*{categoria.id}" class="form-select">
             <option th:each="cat : ${categorias}"

@@ -1,5 +1,5 @@
-// Este servicio maneja un carrito de compra temporal con tiempo limitado.
-// No usamos Repository porque no estamos guardando el carrito en la base de datos.
+// Este servicio es un carrito con tiempo limitado debido que el h2 corre en memoria.
+// No uso Repository porque no estoy guardando el carrito en la base de datos.
 
 package com.salesianostriana.dam.JavierGomezProyectoFinal.service;
 
@@ -39,16 +39,18 @@ public class CarritoService {
         return new ArrayList<>(carrito);
     }
 
-    public double calcularTotal() {
-        return carrito.stream().mapToDouble(CarritoItem::getSubtotal).sum();
-    }
+    public double calcularTotalConIVA() {
+    return carrito.stream()
+            .mapToDouble(CarritoItem::getSubtotalConIVA)
+            .sum();
+}
 
     public double calcularEnvio() {
-        return calcularTotal() >= 30 ? 0.0 : 3.95;
+        return calcularTotalConIVA() >= 30 ? 0.0 : 3.95;
     }
 
     public double calcularTotalConEnvio() {
-        return calcularTotal() + calcularEnvio();
+        return calcularTotalConIVA() + calcularEnvio();
     }
 
     public void vaciarCarrito() {

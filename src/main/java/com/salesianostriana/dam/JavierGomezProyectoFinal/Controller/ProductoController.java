@@ -4,7 +4,6 @@ import com.salesianostriana.dam.JavierGomezProyectoFinal.model.Producto;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.service.CategoriaService;
 import com.salesianostriana.dam.JavierGomezProyectoFinal.service.ProductoService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,6 @@ public class ProductoController {
     private final ProductoService productoService;
     private final CategoriaService categoriaService;
 
-    @Autowired
     public ProductoController(ProductoService productoService, CategoriaService categoriaService) {
         this.productoService = productoService;
         this.categoriaService = categoriaService;
